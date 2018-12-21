@@ -14,7 +14,6 @@ class App extends Component {
   };
 
   handleChange = event => {
-    //event.defaultPrevent();
     this.setState({
       item: event.target.value
     });
@@ -24,10 +23,10 @@ class App extends Component {
     event.preventDefault();
     const newItem = {
       id: this.state.id,
-      item: this.state.item
+      title: this.state.item
     };
 
-    const updatedItems = [...this.state.item, newItem];
+    const updatedItems = [...this.state.items, newItem];
     this.setState({
       items: updatedItems,
       item: "",
@@ -35,6 +34,7 @@ class App extends Component {
       editItem: false
     });
   };
+
   render() {
     return (
       <div className="container">
@@ -46,7 +46,7 @@ class App extends Component {
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
             />
-            <TodoList />
+            <TodoList items={this.state.items} />
           </div>
         </div>
       </div>
